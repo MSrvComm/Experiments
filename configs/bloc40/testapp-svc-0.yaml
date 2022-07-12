@@ -1,0 +1,107 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testapp-svc-0
+spec:
+  ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: testapp-svc-0
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+  labels:
+    app: testapp-svc-0
+  name: testapp-svc-0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapp-svc-0
+  template:
+    metadata:
+      labels:
+        app: testapp-svc-0
+    spec:
+      nodeSelector:
+        workload: svc1
+      containers:
+        - image: ratnadeepb/testapp:latest
+          name: testapp-svc-0
+          env:
+            - name: COST
+              value: "0"
+            - name: INDEX
+              value: "0"
+            - name: SVC
+              value: "testapp-svc-1:5000/svc/1"
+          ports:
+            - containerPort: 5000
+          resources:
+            #   limits:
+            #     cpu: 1500m
+            #     memory: 100Mi
+            requests:
+              cpu: 1000m
+              memory: 50Mi
+        - image: ratnadeepb/blocproxy:latest
+          name: blocproxy
+          env:
+            - name: CLIENTPORT
+              value: "5000"
+            - name: INPORT
+              value: "62081"
+            - name: OUTPORT
+              value: "62082"
+            - name: LBPolicy
+              value: "MLeastConn"
+            - name: RESET
+              value: "1000000"
+            - name: CAPACITY
+              value: "100"
+            - name: RETRIES
+              value: "3"
+          ports:
+            - containerPort: 62081
+            - containerPort: 62082
+          securityContext:
+            allowPrivilegeEscalation: y
+            capabilities:
+              add:
+                - NET_ADMIN
+                - NET_RAW
+              drop:
+                - ALL
+            privileged: y
+            runAsUser: 2102
+      initContainers:
+        - command:
+            - /usr/local/micoinit
+          image: ratnadeepb/micoinit:latest
+          name: mico-init1
+          securityContext:
+            privileged: y
+        - args:
+            - -t
+            - nat
+            - -L
+          command:
+            - iptables
+          image: ratnadeepb/micoinit:latest
+          name: mico-init2
+          securityContext:
+            allowPrivilegeEscalation: y
+            capabilities:
+              add:
+                - NET_ADMIN
+                - NET_RAW
+              drop:
+                - ALL
+            privileged: y
