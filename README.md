@@ -27,15 +27,16 @@ BLOC: Balancing Load with Overload Control In the Microservices Architecture
 
 ```bash
 # format: hub_name/image_name:version
-export WEB_IMG_NAME=ratnadeepb/block:latest
-export PROXY_IMG_NAME=ratnadeepb/blockproxy:latest
+export WEB_IMG_NAME=ratnadeepb/testapp:latest
+export BLOC_PROXY_IMG_NAME=ratnadeepb/micoproxy:latest
+export LC_PROXY_IMG_NAME=ratnadeepb/micoproxy:leastconn
 ```
 
 ### Build the Docker Images
 
 ```bash
 cd BLOC/app && ./docker_build.sh $WEB_IMG_NAME && cd $OLDPWD
-cd BLOCProxy && ./build_proxy.sh $PROXY_IMG_NAME && cd $OLDPWD
+cd BLOCProxy && ./build_proxy.sh $BLOC_PROXY_IMG_NAME && cd $OLDPWD
 ```
 
 ### Deploy the Control Plane
