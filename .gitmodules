@@ -4,3 +4,6 @@
 [submodule "BLOCControl"]
 	path = BLOCControl
 	url = https://github.com/MSrvComm/BLOCControl.git
+[submodule "BLOCProxy"]
+	path = BLOCProxy
+	url = https://github.com/MSrvComm/BLOCProxy.git
