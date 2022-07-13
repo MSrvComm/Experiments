@@ -2,6 +2,8 @@
 
 The entire experiment can be run on an existing 4 node cluster ([look here](#assumptions)) by running the `run.sh` script.
 
+Note: We are running the version of BLOCproxy from April 28th (SHA: 66d3c4a9b01c007c958a5c3825282cf60e744cb2)
+
 ## Get All the Repos
 
 ```bash
@@ -86,3 +88,7 @@ This will store the results in a file called `BLOCProxyVsLeastConn.pdf`
 ```bash
 ./graph.py
 ```
+
+### Reference Data
+
+We have already provided the CSV files and pdf diagram as  a reference of the result. These files have the same names but suffixed with `_ref`.
