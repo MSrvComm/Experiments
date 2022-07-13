@@ -1,4 +1,12 @@
-# Running Experiments with BLOCProxy
+# BLOCProxy Performance
+
+The entire experiment can be run on an existing 4 node cluster ([look here](#assumptions)) by running the `run.sh` script.
+
+## Get All the Repos
+
+```bash
+git clone --recurse-submodules -j4 https://github.com/MSrvComm/Experiments
+```
 
 ## Citation: 
 ```None
@@ -19,8 +27,8 @@ BLOC: Balancing Load with Overload Control In the Microservices Architecture
 
 ```bash
 # format: hub_name/image_name:version
-export WEB_IMG_NAME=<web_tool_image_name>
-export PROXY_IMG_NAME=<web_tool_image_name>
+export WEB_IMG_NAME=ratnadeepb/block:latest
+export PROXY_IMG_NAME=ratnadeepb/blockproxy:latest
 ```
 
 ### Build the Docker Images

@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: testapp-svc-1
+  name: bloc-svc-1
 spec:
   ports:
     - port: 5000
       protocol: TCP
       targetPort: 5000
   selector:
-    app: testapp-svc-1
+    app: bloc-svc-1
   type: LoadBalancer
 
 ---
@@ -18,30 +18,30 @@ metadata:
   annotations:
     sidecar.jaegertracing.io/inject: "true"
   labels:
-    app: testapp-svc-1
-  name: testapp-svc-1
+    app: bloc-svc-1
+  name: bloc-svc-1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: testapp-svc-1
+      app: bloc-svc-1
   template:
     metadata:
       labels:
-        app: testapp-svc-1
+        app: bloc-svc-1
     spec:
       nodeSelector:
         workload: svc1
       containers:
-        - image: ratnadeepb/testapp:latest
-          name: testapp-svc-1
+        - image: ratnadeepb/bloc:latest
+          name: bloc-svc-1
           env:
             - name: COST
               value: "0"
             - name: INDEX
               value: "1"
             - name: SVC
-              value: "testapp-svc-2:5000/svc/1"
+              value: "bloc-svc-2:5000/svc/1"
           ports:
             - containerPort: 5000
           resources:
