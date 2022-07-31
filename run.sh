@@ -6,7 +6,7 @@ sleep 60
 
 # Run the experiment
 for EXP in "lc1" "lc40" "bloc40"
-dos
+do
     . deploy.sh $EXP
     sleep 120
     echo "running experiment for $EXP"
