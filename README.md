@@ -4,13 +4,15 @@ The entire experiment can be run on an existing 4 node cluster ([look here](#ass
 
 A kubernetes cluster on Ubuntu 18 or 20 nodes can be setup by following this [guide](K8s_setup.md).
 
-Note: We are running the version of BLOCproxy from April 28th (SHA: 66d3c4a9b01c007c958a5c3825282cf60e744cb2)
-
 ## Get All the Repos
+
+The best way of getting the repos is through the submodules command.
 
 ```bash
 git clone --recurse-submodules -j4 https://github.com/MSrvComm/Experiments
 ```
+
+If you need to checkout BLOCProxy separately, then use the `stable` branch (non-default branch).
 
 ## Citation: 
 ```None
@@ -23,9 +25,11 @@ BLOC: Balancing Load with Overload Control In the Microservices Architecture
 
 - We assume that the experiments will be running on a Kubernetes cluster able to run 50-60 pods with 2 containers each. Further details on configuration can be found in the deployement yaml files. In our experiments, we used 4 Cloudlab servers, each with four 10 core sockets and 196 GB of RAM.
 
-- The experiments are being run from an Ubuntu machine
+- The experiments are being run from an Ubuntu machine.
 
-- Python3 is installed on the system
+- Python3.9 and the bash shell is available on the system.
+
+- We use matplotlib, numpy and pandas to generate our results.
 
 ### Define Image Names as Environment Variables
 
