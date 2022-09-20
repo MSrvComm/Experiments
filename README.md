@@ -1,6 +1,8 @@
 # BLOCProxy Performance
 
-The entire experiment can be run on an existing 4 node cluster ([look here](#assumptions)) by running the `run.sh` script.
+The entire experiment can be run on an existing 4 node cluster ([look here](#assumptions)) by running the `run.sh` bash script.
+
+A kubernetes cluster on Ubuntu 18 or 20 nodes can be setup by following this [guide](K8s_setup.md).
 
 Note: We are running the version of BLOCproxy from April 28th (SHA: 66d3c4a9b01c007c958a5c3825282cf60e744cb2)
 
