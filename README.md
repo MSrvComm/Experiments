@@ -31,6 +31,7 @@ BLOC: Balancing Load with Overload Control In the Microservices Architecture
 
 - We use matplotlib, numpy and pandas to generate our results.
 
+(Optional - if you want to test with your own images; otherwise start with [Control Plane](#Deploy the Control Plane))
 ### Define Image Names as Environment Variables
 
 ```bash
@@ -40,7 +41,7 @@ export BLOC_PROXY_IMG_NAME=ratnadeepb/micoproxy:latest
 export LC_PROXY_IMG_NAME=ratnadeepb/micoproxy:leastconn
 ```
 
-### Build the Docker Images (Optional - if you want to test with your own images)
+### Build the Docker Images
 
 ```bash
 cd BLOC/app && ./docker_build.sh $WEB_IMG_NAME && cd $OLDPWD
