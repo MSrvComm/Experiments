@@ -40,7 +40,7 @@ export BLOC_PROXY_IMG_NAME=ratnadeepb/micoproxy:latest
 export LC_PROXY_IMG_NAME=ratnadeepb/micoproxy:leastconn
 ```
 
-### Build the Docker Images
+### Build the Docker Images (Optional - if you want to test with your own images)
 
 ```bash
 cd BLOC/app && ./docker_build.sh $WEB_IMG_NAME && cd $OLDPWD
